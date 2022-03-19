@@ -57,9 +57,13 @@ decagon_angle = 144;
 
 // Truncated cuboctahedron
 angle_4_6 = acos(-sqrt(6)/3);
-angle_4_8 = acos(-sqrt(2)/3);
+angle_4_8 = acos(-1/sqrt(2));
 angle_6_8 = acos(-sqrt(3)/3);
-draw_vertex(73,45,[[octagon_angle,angle_6_8],[90,angle_4_8],[hexagon_angle,angle_4_6]]);
+// first half
+draw_vertex(78,33,[[octagon_angle,angle_6_8],[90,angle_4_8],[hexagon_angle,angle_4_6]]);
+// second half
+//draw_vertex(78,22,[[hexagon_angle,angle_6_8],[90,angle_4_6],[octagon_angle,angle_4_8]]);
+
 
 
 // Truncated icosahedron
@@ -135,6 +139,12 @@ rotate ([0,0,180-list[1][1]]) rotate ([list[1][0],0,0])
 {
 rotate ([0,0,(180-list[2][1])/2]) 
     construct(mode);
+    
+rotate ([0,0,180-list[2][1]]) rotate ([list[2][0],0,0]) 
+{
+rotate ([0,0,(180-list[0][1])/2]) 
+    construct(mode);
+}
 }
 }
 }
@@ -237,7 +247,7 @@ module draw_vertex(base_y_rot,base_z_rot,list)
         }
     center_hole();
         }
-        z_offset = (radius+thickness)*sin(base_y_rot)-1.5;
+        z_offset = (radius+thickness)*sin(base_y_rot)-2;
         max_x = (radius+thickness)*sin(base_y_rot) + (length+center_offset)*cos(base_y_rot);
         translate([-2*length,-2*length,-z_offset])
         #cube([4*length,4*length,max_x+z_offset]);
