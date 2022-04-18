@@ -6,12 +6,12 @@
 // Some parameters might need some ad-hoc manual tweaking (the geometry is pretty hard and annoying to do thouroughly)
 
 
-length = 9;
+length = 8;
 diameter = 9.3;
 
 radius = diameter/2;
 thickness = 1;
-center_offset=1.5*radius;
+center_offset=1.8*radius;
 $fn = 25; // cylinder hole precision
 
 pentagon_angle = 108;
@@ -47,6 +47,17 @@ decagon_angle = 144;
 //angle = acos(1/3);
 //draw_vertex(38,45,[[60,angle],[60,angle],[60,angle]]);
 
+// Truncated tetraedron
+//angle_6_6 = 70.57;
+//angle_3_6 = 109.47;
+//draw_vertex(65,15,[[60,angle_3_6],[hexagon_angle,angle_3_6], [hexagon_angle,angle_6_6]]);
+
+// Truncated cube
+angle_8_8 = 90;
+angle_3_8 = 125.26;
+draw_vertex(75,10,[[60,angle_3_8],[octagon_angle,angle_3_8], [octagon_angle,angle_8_8]]);
+
+
 // Rhombicuboctahedron
 //draw_vertex(67.5,22.5,[[90,144.74],[90,135],[90,135],[60,144.74]]);
 
@@ -56,11 +67,11 @@ decagon_angle = 144;
 //draw_vertex(77,19,[[108,angle_4_5],[90,angle_4_5],[60,angle_3_4],[90,angle_3_4]]);
 
 // Truncated cuboctahedron
-angle_4_6 = acos(-sqrt(6)/3);
-angle_4_8 = acos(-1/sqrt(2));
-angle_6_8 = acos(-sqrt(3)/3);
+//angle_4_6 = acos(-sqrt(6)/3);
+//angle_4_8 = acos(-1/sqrt(2));
+//angle_6_8 = acos(-sqrt(3)/3);
 // first half
-draw_vertex(78,33,[[octagon_angle,angle_6_8],[90,angle_4_8],[hexagon_angle,angle_4_6]]);
+//draw_vertex(78,33,[[octagon_angle,angle_6_8],[90,angle_4_8],[hexagon_angle,angle_4_6]]);
 // second half
 //draw_vertex(78,22,[[hexagon_angle,angle_6_8],[90,angle_4_6],[octagon_angle,angle_4_8]]);
 
@@ -78,7 +89,7 @@ draw_vertex(78,33,[[octagon_angle,angle_6_8],[90,angle_4_8],[hexagon_angle,angle
 // Truncated dodecahedron
 //angle_10_10 = 116.57;
 //angle_3_10 = 142.62;
-//draw_vertex(80,30,[[decagon_angle,angle_3_10],[decagon_angle,angle_10_10], [60,angle_3_10]]);
+//draw_vertex(81,32,[[decagon_angle,angle_3_10],[decagon_angle,angle_10_10], [60,angle_3_10]]);
 
 // Cuboctahedron
 //angle = 125.26;
@@ -247,9 +258,9 @@ module draw_vertex(base_y_rot,base_z_rot,list)
         }
     center_hole();
         }
-        z_offset = (radius+thickness)*sin(base_y_rot)-2;
+        z_offset = (radius+thickness)*sin(base_y_rot)-2.5;
         max_x = (radius+thickness)*sin(base_y_rot) + (length+center_offset)*cos(base_y_rot);
-        translate([-2*length,-2*length,-z_offset])
-        #cube([4*length,4*length,max_x+z_offset]);
+        translate([-2.5*length,-2.5*length,-z_offset])
+        #cube([5*length,5*length,max_x+z_offset]);
     }
 }
